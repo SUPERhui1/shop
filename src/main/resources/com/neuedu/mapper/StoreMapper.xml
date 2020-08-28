@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neuedu.mapper.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Store" >
+    <id column="storeId" property="storeid" jdbcType="BIGINT" />
+    <result column="storeName" property="storename" jdbcType="VARCHAR" />
+    <result column="fansNum" property="fansnum" jdbcType="INTEGER" />
+    <result column="storeLevel" property="storelevel" jdbcType="INTEGER" />
+    <result column="firstTypeId0" property="firsttypeid0" jdbcType="BIGINT" />
+    <result column="firstTypeId1" property="firsttypeid1" jdbcType="BIGINT" />
+    <result column="firstTypeId2" property="firsttypeid2" jdbcType="BIGINT" />
+    <result column="firstTypeId3" property="firsttypeid3" jdbcType="BIGINT" />
+    <result column="firstTypeId4" property="firsttypeid4" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="storeHeadPortrait" property="storeheadportrait" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    storeId, storeName, fansNum, storeLevel, firstTypeId0, firstTypeId1, firstTypeId2, 
+    firstTypeId3, firstTypeId4, userId, storeHeadPortrait, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where storeId = #{storeid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from store
+    where storeId = #{storeid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Store" >
+    insert into store (storeId, storeName, fansNum, 
+      storeLevel, firstTypeId0, firstTypeId1, 
+      firstTypeId2, firstTypeId3, firstTypeId4, 
+      userId, storeHeadPortrait, createTime
+      )
+    values (#{storeid,jdbcType=BIGINT}, #{storename,jdbcType=VARCHAR}, #{fansnum,jdbcType=INTEGER}, 
+      #{storelevel,jdbcType=INTEGER}, #{firsttypeid0,jdbcType=BIGINT}, #{firsttypeid1,jdbcType=BIGINT}, 
+      #{firsttypeid2,jdbcType=BIGINT}, #{firsttypeid3,jdbcType=BIGINT}, #{firsttypeid4,jdbcType=BIGINT}, 
+      #{userid,jdbcType=BIGINT}, #{storeheadportrait,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Store" >
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeid != null" >
+        storeId,
+      </if>
+      <if test="storename != null" >
+        storeName,
+      </if>
+      <if test="fansnum != null" >
+        fansNum,
+      </if>
+      <if test="storelevel != null" >
+        storeLevel,
+      </if>
+      <if test="firsttypeid0 != null" >
+        firstTypeId0,
+      </if>
+      <if test="firsttypeid1 != null" >
+        firstTypeId1,
+      </if>
+      <if test="firsttypeid2 != null" >
+        firstTypeId2,
+      </if>
+      <if test="firsttypeid3 != null" >
+        firstTypeId3,
+      </if>
+      <if test="firsttypeid4 != null" >
+        firstTypeId4,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="storeheadportrait != null" >
+        storeHeadPortrait,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeid != null" >
+        #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="storename != null" >
+        #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="fansnum != null" >
+        #{fansnum,jdbcType=INTEGER},
+      </if>
+      <if test="storelevel != null" >
+        #{storelevel,jdbcType=INTEGER},
+      </if>
+      <if test="firsttypeid0 != null" >
+        #{firsttypeid0,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid1 != null" >
+        #{firsttypeid1,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid2 != null" >
+        #{firsttypeid2,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid3 != null" >
+        #{firsttypeid3,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid4 != null" >
+        #{firsttypeid4,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="storeheadportrait != null" >
+        #{storeheadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Store" >
+    update store
+    <set >
+      <if test="storename != null" >
+        storeName = #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="fansnum != null" >
+        fansNum = #{fansnum,jdbcType=INTEGER},
+      </if>
+      <if test="storelevel != null" >
+        storeLevel = #{storelevel,jdbcType=INTEGER},
+      </if>
+      <if test="firsttypeid0 != null" >
+        firstTypeId0 = #{firsttypeid0,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid1 != null" >
+        firstTypeId1 = #{firsttypeid1,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid2 != null" >
+        firstTypeId2 = #{firsttypeid2,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid3 != null" >
+        firstTypeId3 = #{firsttypeid3,jdbcType=BIGINT},
+      </if>
+      <if test="firsttypeid4 != null" >
+        firstTypeId4 = #{firsttypeid4,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="storeheadportrait != null" >
+        storeHeadPortrait = #{storeheadportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where storeId = #{storeid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Store" >
+    update store
+    set storeName = #{storename,jdbcType=VARCHAR},
+      fansNum = #{fansnum,jdbcType=INTEGER},
+      storeLevel = #{storelevel,jdbcType=INTEGER},
+      firstTypeId0 = #{firsttypeid0,jdbcType=BIGINT},
+      firstTypeId1 = #{firsttypeid1,jdbcType=BIGINT},
+      firstTypeId2 = #{firsttypeid2,jdbcType=BIGINT},
+      firstTypeId3 = #{firsttypeid3,jdbcType=BIGINT},
+      firstTypeId4 = #{firsttypeid4,jdbcType=BIGINT},
+      userId = #{userid,jdbcType=BIGINT},
+      storeHeadPortrait = #{storeheadportrait,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where storeId = #{storeid,jdbcType=BIGINT}
+  </update>
+</mapper>

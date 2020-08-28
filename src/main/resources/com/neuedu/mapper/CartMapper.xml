@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neuedu.mapper.CartMapper" >
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Cart" >
+    <id column="cartId" property="cartid" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="goodsId" property="goodsid" jdbcType="BIGINT" />
+    <result column="goodsNum" property="goodsnum" jdbcType="INTEGER" />
+    <result column="carPrice" property="carprice" jdbcType="INTEGER" />
+    <result column="storeName" property="storename" jdbcType="VARCHAR" />
+    <result column="storeId" property="storeid" jdbcType="BIGINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cartId, userId, goodsId, goodsNum, carPrice, storeName, storeId, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where cartId = #{cartid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from cart
+    where cartId = #{cartid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Cart" >
+    insert into cart (cartId, userId, goodsId, 
+      goodsNum, carPrice, storeName, 
+      storeId, createTime)
+    values (#{cartid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{goodsid,jdbcType=BIGINT}, 
+      #{goodsnum,jdbcType=INTEGER}, #{carprice,jdbcType=INTEGER}, #{storename,jdbcType=VARCHAR}, 
+      #{storeid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Cart" >
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartid != null" >
+        cartId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum,
+      </if>
+      <if test="carprice != null" >
+        carPrice,
+      </if>
+      <if test="storename != null" >
+        storeName,
+      </if>
+      <if test="storeid != null" >
+        storeId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartid != null" >
+        #{cartid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="goodsnum != null" >
+        #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="carprice != null" >
+        #{carprice,jdbcType=INTEGER},
+      </if>
+      <if test="storename != null" >
+        #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Cart" >
+    update cart
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="goodsid != null" >
+        goodsId = #{goodsid,jdbcType=BIGINT},
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum = #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="carprice != null" >
+        carPrice = #{carprice,jdbcType=INTEGER},
+      </if>
+      <if test="storename != null" >
+        storeName = #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="storeid != null" >
+        storeId = #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cartId = #{cartid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Cart" >
+    update cart
+    set userId = #{userid,jdbcType=BIGINT},
+      goodsId = #{goodsid,jdbcType=BIGINT},
+      goodsNum = #{goodsnum,jdbcType=INTEGER},
+      carPrice = #{carprice,jdbcType=INTEGER},
+      storeName = #{storename,jdbcType=VARCHAR},
+      storeId = #{storeid,jdbcType=BIGINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where cartId = #{cartid,jdbcType=BIGINT}
+  </update>
+</mapper>

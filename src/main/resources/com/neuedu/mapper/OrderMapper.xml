@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neuedu.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Order" >
+    <id column="orderId" property="orderid" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="storeId" property="storeid" jdbcType="BIGINT" />
+    <result column="storeName" property="storename" jdbcType="VARCHAR" />
+    <result column="oderPrice" property="oderprice" jdbcType="DECIMAL" />
+    <result column="addressId" property="addressid" jdbcType="BIGINT" />
+    <result column="courier" property="courier" jdbcType="VARCHAR" />
+    <result column="courierGoodsId" property="couriergoodsid" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, userId, storeId, storeName, oderPrice, addressId, courier, courierGoodsId, 
+    status, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Order" >
+    insert into order (orderId, userId, storeId, 
+      storeName, oderPrice, addressId, 
+      courier, courierGoodsId, status, 
+      createTime)
+    values (#{orderid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{storeid,jdbcType=BIGINT}, 
+      #{storename,jdbcType=VARCHAR}, #{oderprice,jdbcType=DECIMAL}, #{addressid,jdbcType=BIGINT}, 
+      #{courier,jdbcType=VARCHAR}, #{couriergoodsid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="storeid != null" >
+        storeId,
+      </if>
+      <if test="storename != null" >
+        storeName,
+      </if>
+      <if test="oderprice != null" >
+        oderPrice,
+      </if>
+      <if test="addressid != null" >
+        addressId,
+      </if>
+      <if test="courier != null" >
+        courier,
+      </if>
+      <if test="couriergoodsid != null" >
+        courierGoodsId,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="storeid != null" >
+        #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="storename != null" >
+        #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="oderprice != null" >
+        #{oderprice,jdbcType=DECIMAL},
+      </if>
+      <if test="addressid != null" >
+        #{addressid,jdbcType=BIGINT},
+      </if>
+      <if test="courier != null" >
+        #{courier,jdbcType=VARCHAR},
+      </if>
+      <if test="couriergoodsid != null" >
+        #{couriergoodsid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Order" >
+    update order
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="storeid != null" >
+        storeId = #{storeid,jdbcType=BIGINT},
+      </if>
+      <if test="storename != null" >
+        storeName = #{storename,jdbcType=VARCHAR},
+      </if>
+      <if test="oderprice != null" >
+        oderPrice = #{oderprice,jdbcType=DECIMAL},
+      </if>
+      <if test="addressid != null" >
+        addressId = #{addressid,jdbcType=BIGINT},
+      </if>
+      <if test="courier != null" >
+        courier = #{courier,jdbcType=VARCHAR},
+      </if>
+      <if test="couriergoodsid != null" >
+        courierGoodsId = #{couriergoodsid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Order" >
+    update order
+    set userId = #{userid,jdbcType=BIGINT},
+      storeId = #{storeid,jdbcType=BIGINT},
+      storeName = #{storename,jdbcType=VARCHAR},
+      oderPrice = #{oderprice,jdbcType=DECIMAL},
+      addressId = #{addressid,jdbcType=BIGINT},
+      courier = #{courier,jdbcType=VARCHAR},
+      courierGoodsId = #{couriergoodsid,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where orderId = #{orderid,jdbcType=BIGINT}
+  </update>
+</mapper>

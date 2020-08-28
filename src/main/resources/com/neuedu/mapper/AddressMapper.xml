@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neuedu.mapper.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.neuedu.entity.Address" >
+    <id column="addressId" property="addressid" jdbcType="BIGINT" />
+    <result column="consigneeName" property="consigneename" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="addressPhone" property="addressphone" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="detailAddress" property="detailaddress" jdbcType="VARCHAR" />
+    <result column="postCode" property="postcode" jdbcType="VARCHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    addressId, consigneeName, userId, addressPhone, province, city, area, detailAddress, 
+    postCode, label, status, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where addressId = #{addressid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from address
+    where addressId = #{addressid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.neuedu.entity.Address" >
+    insert into address (addressId, consigneeName, userId, 
+      addressPhone, province, city, 
+      area, detailAddress, postCode, 
+      label, status, createTime
+      )
+    values (#{addressid,jdbcType=BIGINT}, #{consigneename,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{addressphone,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{detailaddress,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
+      #{label,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.neuedu.entity.Address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        addressId,
+      </if>
+      <if test="consigneename != null" >
+        consigneeName,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="addressphone != null" >
+        addressPhone,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="detailaddress != null" >
+        detailAddress,
+      </if>
+      <if test="postcode != null" >
+        postCode,
+      </if>
+      <if test="label != null" >
+        label,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressid != null" >
+        #{addressid,jdbcType=BIGINT},
+      </if>
+      <if test="consigneename != null" >
+        #{consigneename,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="addressphone != null" >
+        #{addressphone,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddress != null" >
+        #{detailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.neuedu.entity.Address" >
+    update address
+    <set >
+      <if test="consigneename != null" >
+        consigneeName = #{consigneename,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="addressphone != null" >
+        addressPhone = #{addressphone,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddress != null" >
+        detailAddress = #{detailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        postCode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where addressId = #{addressid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.neuedu.entity.Address" >
+    update address
+    set consigneeName = #{consigneename,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      addressPhone = #{addressphone,jdbcType=INTEGER},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      detailAddress = #{detailaddress,jdbcType=VARCHAR},
+      postCode = #{postcode,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where addressId = #{addressid,jdbcType=BIGINT}
+  </update>
+</mapper>
